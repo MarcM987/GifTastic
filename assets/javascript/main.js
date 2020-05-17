@@ -27,7 +27,7 @@ for(let i=0; i < topics.length; ++i){
                 var gifDiv = $("<div>");
                 var rating = results[i].rating;
                 var p = $("<p>").text("Rating: " + rating);
-                var keanuImage = $("<img class='gif'>").attr("src", results[i].images.fixed_height.url.slice(0,-4)+"_s.gif");
+                var keanuImage = $("<img class='gif' paused='true'>").attr("src", results[i].images.fixed_height.url.slice(0,-4)+"_s.gif");
     
                 //
                 gifDiv.prepend(p);
@@ -36,6 +36,20 @@ for(let i=0; i < topics.length; ++i){
                 //
                 $("#keanus").prepend(gifDiv);
             }
+
+            //pause/play gif
+            $(".gif").on("click", function(){
+                console.log(this);
+                var tempsrc = $(this).attr("src");;
+                if($(this).attr("paused") == "true"){
+                    $(this).attr("src", tempsrc.slice(0,-6)+".gif");
+                    $(this).attr("paused", "false");
+                }else{
+                    $(this).attr("src", tempsrc.slice(0,-4)+"_s.gif");
+                    $(this).attr("paused", "true");
+                }
+                
+            });
         });
     });
 }
