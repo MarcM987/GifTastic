@@ -21,13 +21,16 @@ for(let i=0; i < topics.length; ++i){
         })
         .then(function(response) {
             var results = response.data;
-    
-            for (var i = 0; i < results.length; i++) {
+
+            //removes previous topic gifs before appending different topic gifs
+            $("#keanus").html("");
+
+            for (let j = 0; j < results.length; j++) {
                 //
                 var gifDiv = $("<div>");
-                var rating = results[i].rating;
+                var rating = results[j].rating;
                 var p = $("<p>").text("Rating: " + rating);
-                var keanuImage = $("<img class='gif' paused='true'>").attr("src", results[i].images.fixed_height.url.slice(0,-4)+"_s.gif");
+                var keanuImage = $("<img class='gif' paused='true'>").attr("src", results[j].images.fixed_height.url.slice(0,-4)+"_s.gif");
     
                 //
                 gifDiv.prepend(p);
@@ -39,7 +42,6 @@ for(let i=0; i < topics.length; ++i){
 
             //pause/play gif
             $(".gif").on("click", function(){
-                console.log(this);
                 var tempsrc = $(this).attr("src");;
                 if($(this).attr("paused") == "true"){
                     $(this).attr("src", tempsrc.slice(0,-6)+".gif");
