@@ -79,14 +79,12 @@ for(let i=0; i < topics.length; ++i){
             $("#keanus").html("");
 
             for (let j = 0; j < results.length; j++) {
-                console.log(results[0]);
                 //
                 var gifDiv = $("<div>");
                 var rating = results[j].rating;
                 var p = $("<p>").text("Rating: " + rating);
                 var keanuImage = $("<img class='gif' paused='true'>").attr("src", results[j].images.fixed_height_still.url);
-                console.log(results[j].images.fixed_height_still.url);
-    
+                    
                 //
                 gifDiv.prepend(p);
                 gifDiv.append(keanuImage);
